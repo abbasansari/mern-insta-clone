@@ -33,6 +33,6 @@ db();
 
 const PORT = 8000;
 
-app.listen(PORT, () => {
-  console.log(`App is runing on port ${PORT}`.bgGreen);
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`App is runing on port ${process.env.PORT}`.bgGreen);
 });
