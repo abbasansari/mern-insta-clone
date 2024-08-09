@@ -23,6 +23,18 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+//Error Middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
+
 //routes
 app.get("/", (req, res) => {
   res.status(200).json({ success: true, message: "Welcom to Instagram" });
