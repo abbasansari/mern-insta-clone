@@ -39,7 +39,7 @@ export const userSignUpController = async (req, res) => {
 
 //sigin Controller
 
-const sigInController = async (req, res) => {
+export const userSigInController = async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
   try {
@@ -72,5 +72,29 @@ const sigInController = async (req, res) => {
       .json(rest);
   } catch (error) {
     console.log(error);
+  }
+};
+
+//logout controller
+
+export const userLogOutController = async (_, res, next) => {
+  try {
+    return res
+      .clearCookie("access_token")
+      .status(200)
+      .json({ success: true, messahe: "Logout Successfull" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get user by id controller
+
+export const getUserByIdController = async (req, res, next) => {
+  try {
+    const user = await userModel.findById(req.params.id);
+    return res.status(200).json({ success: true, user });
+  } catch (error) {
+    next(error);
   }
 };

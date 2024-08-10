@@ -5,6 +5,7 @@ import colors from "colors";
 import morgan from "morgan";
 import { db } from "./utils/db.js";
 import { configDotenv } from "dotenv";
+import authRouter from "./routes/authRouter.js";
 
 configDotenv();
 
@@ -35,7 +36,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-//routes
+// Routes
+app.use("/api/user", authRouter);
+
 app.get("/", (req, res) => {
   res.status(200).json({ success: true, message: "Welcom to Instagram" });
 });
