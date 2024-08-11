@@ -82,7 +82,7 @@ export const userLogOutController = async (_, res, next) => {
     return res
       .clearCookie("access_token")
       .status(200)
-      .json({ success: true, messahe: "Logout Successfull" });
+      .json({ success: true, message: "Logout Successfull" });
   } catch (error) {
     next(error);
   }
@@ -94,6 +94,15 @@ export const getUserByIdController = async (req, res, next) => {
   try {
     const user = await userModel.findById(req.params.id);
     return res.status(200).json({ success: true, user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//edit user
+
+export const editUserController = async (req, res, next) => {
+  try {
   } catch (error) {
     next(error);
   }
